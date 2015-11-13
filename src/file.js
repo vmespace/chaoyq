@@ -7,6 +7,7 @@ var fs = require('fs'),
 	mmmagic = require('mmmagic'),
 	Magic = mmmagic.Magic,
 	mime = require('mime'),
+    QiniuNode = require('nodebb-plugin-qiniu-all'),
 
 	utils = require('../public/src/utils');
 
