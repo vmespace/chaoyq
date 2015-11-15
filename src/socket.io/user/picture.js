@@ -19,14 +19,6 @@ module.exports = function(SocketUser) {
 
 		var type = data.type;
 
-		// if (type === 'default') {
-		// 	type = null;
-		// } else if (type === 'uploaded') {
-		// 	type = 'uploadedpicture';
-		// } else {
-		// 	return callback(new Error('[[error:invalid-image-type, ' + ['default', 'uploadedpicture'].join('&#44; ') + ']]'));
-		// }
-
 		async.waterfall([
 			function (next) {
 				user.isAdminOrSelf(socket.uid, data.uid, next);
@@ -100,12 +92,16 @@ module.exports = function(SocketUser) {
 	};
 
 	SocketUser.getProfilePictures = function(socket, data, callback) {
+		if (!data || !data.uid) {
+			return callback(new Error('[[error:invalid-data]]'));
+		}
+
 		async.parallel({
 			list: async.apply(plugins.fireHook, 'filter:user.listPictures', {
-				uid: socket.uid,
+				uid: data.uid,
 				pictures: []
 			}),
-			uploaded: async.apply(user.getUserField, socket.uid, 'uploadedpicture')
+			uploaded: async.apply(user.getUserField, data.uid, 'uploadedpicture')
 		}, function(err, data) {
 			if (err) {
 				return callback(err);

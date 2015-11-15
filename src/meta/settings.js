@@ -29,6 +29,7 @@ module.exports = function(Meta) {
 				settings: values
 			});
 
+			Meta.reloadRequired = true;
 			callback();
 		});
 	};
