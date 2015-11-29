@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>超有趣 - 发现有趣的网站!</title>
+	<title>{title}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="{relative_path}/vendor/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css?{cache-buster}">
 	<link rel="stylesheet" type="text/css" href="{relative_path}/admin.css?{cache-buster}" />
 	<link rel="stylesheet" type="text/css" href="{relative_path}/vendor/mdl/mdl.min.css?{cache-buster}" />
-	<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 	<script>
 		var RELATIVE_PATH = "{relative_path}";

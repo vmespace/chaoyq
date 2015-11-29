@@ -1,0 +1,20 @@
+<!-- BEGIN posts -->
+<li data-pid="{posts.pid}" class="clearfix widget-posts">
+	<a href="<!-- IF posts.user.userslug -->{relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">
+		
+		<!-- IF posts.user.picture -->
+		<img title="{posts.user.username}" class="profile-image user-img not-responsive" src="{posts.user.picture}" />
+		<!-- ELSE -->
+		<div class="user-icon profile-image user-img not-responsive" style="background-color: {posts.user.icon:bgColor};">{posts.user.icon:text}</div>
+		<!-- ENDIF posts.user.picture -->
+	</a>
+	<div>
+		{posts.content}
+		<p class="fade-out"></p>
+	</div>
+	<span class="pull-right post-preview-footer">
+		<span class="timeago" title="{posts.relativeTime}"></span> &bull;
+		<a href="{relative_path}/topic/{posts.topic.slug}/{posts.index}">[[global:read_more]]</a>
+	</span>
+</li>
+<!-- END posts -->

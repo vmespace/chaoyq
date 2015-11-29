@@ -202,44 +202,35 @@ var fs = require('fs'),
 			matching = true;
 		}
 
-//		var url = (nconf.get('registry') || 'https://packages.nodebb.org') + '/api/v1/plugins' + (matching !== false ? '?version=' + require('../package.json').version : '');
-//
-//        console.log("nconf.get('registry') is ", nconf.get('registry'));
-//        console.log("url---- is ", url);
-//		require('request')(url, {
-//			json: true
-//		}, function(err, res, body) {
-//			var plugins = [];
-//
-//			if (err) {
-//				winston.error('Error parsing plugins : ' + err.message);
-//				plugins = [];
-//			}
-//
-//            console.log("body---- is ", body);
-//            if(body === undefined){
-//                winston.error('Error recv plugins, body is undefined : ' + err.message);
-//                plugins = [];
-//            }
-//            Plugins.normalise(body, callback);
-//		});
-        Plugins.normalise(undefined, callback);
+		var url = (nconf.get('registry') || 'https://packages.nodebb.org') + '/api/v1/plugins' + (matching !== false ? '?version=' + require('../package.json').version : '');
+
+		require('request')(url, {
+			json: true
+		}, function(err, res, body) {
+			var plugins = [];
+
+			if (err) {
+				winston.error('Error parsing plugins : ' + err.message);
+				plugins = [];
+                return;
+			}
+
+			Plugins.normalise(body, callback);
+		});
 	};
 
 	Plugins.normalise = function(apiReturn, callback) {
 		var pluginMap = {},
 			dependencies = require.main.require('./package.json').dependencies;
 
-        if(apiReturn !== undefined) {
-            for (var i = 0; i < apiReturn.length; ++i) {
-                apiReturn[i].id = apiReturn[i].name;
-                apiReturn[i].installed = false;
-                apiReturn[i].active = false;
-                apiReturn[i].url = apiReturn[i].url ? apiReturn[i].url : apiReturn[i].repository ? apiReturn[i].repository.url : '';
-                apiReturn[i].latest = apiReturn[i].latest;
-                pluginMap[apiReturn[i].name] = apiReturn[i];
-            }
-        }
+		for(var i=0; i<apiReturn.length; ++i) {
+			apiReturn[i].id = apiReturn[i].name;
+			apiReturn[i].installed = false;
+			apiReturn[i].active = false;
+			apiReturn[i].url = apiReturn[i].url ? apiReturn[i].url : apiReturn[i].repository ? apiReturn[i].repository.url : '';
+			apiReturn[i].latest = apiReturn[i].latest;
+			pluginMap[apiReturn[i].name] = apiReturn[i];
+		}
 
 		Plugins.showInstalled(function(err, installedPlugins) {
 			if (err) {
