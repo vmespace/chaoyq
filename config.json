@@ -1,5 +1,5 @@
 {
-    "url": "http://chaoyouqu.cn",
+    "url": "http://chaoyouqu.cn:80",
     "secret": "123456",
     "database": "mongo",
     "mongo": {
