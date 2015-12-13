@@ -84,7 +84,7 @@
 		$.getScript(RELATIVE_PATH + '/vendor/jquery/timeago/locales/jquery.timeago.' + languageCode + '.js').success(function() {
 			$('.timeago').timeago();
 			translator.timeagoShort = $.extend({}, jQuery.timeago.settings.strings);
-
+/*
 			// Retrieve the shorthand timeago values as well
 			$.getScript(RELATIVE_PATH + '/vendor/jquery/timeago/locales/jquery.timeago.' + languageCode + '-short.js').success(function() {
 				// Switch back to long-form
@@ -95,6 +95,7 @@
 					translator.toggleTimeagoShorthand();
 				});
 			});
+			*/
 		}).fail(function() {
 			$.getScript(RELATIVE_PATH + '/vendor/jquery/timeago/locales/jquery.timeago.en-short.js').success(function() {
 				// Switch back to long-form
