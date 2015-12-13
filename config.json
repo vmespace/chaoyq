@@ -1,5 +1,5 @@
 {
-    "url": "http://localhost:4567",
+    "url": "http://chaoyouqu.cn",
     "secret": "123456",
     "database": "mongo",
     "mongo": {

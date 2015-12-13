@@ -4,6 +4,8 @@ sftp-config.json
 public/src/nodebb.min.js
 !src/views/config.json
 public/css/*.css
+public/uploads/profile/*.jpg
+public/uploads/profile/
 *.sublime-project
 *.sublime-workspace
 .project
